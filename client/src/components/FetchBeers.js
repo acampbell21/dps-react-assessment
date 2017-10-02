@@ -7,21 +7,16 @@ import { getBeers } from '../actions/beers';
 import { Loader, Segment, Dimmer } from 'semantic-ui-react';
 
 class FetchBeers extends React.Component {
-  state = { loaded: false }
 
   componentDidMount() {
-    this.props.dispatch(getBeers(this.setLoaded))
-  }
-
-  setLoaded = () => {
-    this.setState({ loaded: true });
+    this.props.dispatch(getBeers())
   }
 
   render() {
-    let { loaded } = this.state;
-    if (loaded) {
+    if (this.props.beers) {
       return (
         <div>
+          debugger
           <Route exact path="/beers" component={Beers} />
           <Route exact path="/beers/:id" component={BeerView} />
         </div>
@@ -38,4 +33,7 @@ class FetchBeers extends React.Component {
   }
 }
 
-export default connect()(FetchBeers);
+const mapStateToProps = (state) => (
+  { beers: state.beers }
+)
+export default connect(mapStateToProps)(FetchBeers);

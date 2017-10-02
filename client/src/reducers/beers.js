@@ -1,17 +1,17 @@
-const beers = (state = [], action) => {
+const beers = (state = [], action ) => {
   switch(action.type) {
     case 'BEERS':
-      return action.beers;
+      return action.beers
     case 'ADD_BEER':
-      return [...state, action.beer]
+      return [action.beer, ...state]
     case 'UPDATE_BEER':
-      return state.map( beer => {
-        if(beer.id === action.beer.id)
+      return state.map( b => {
+        if (b.id === action.beer.id)
           return action.beer
-        return beer
+        return b
       })
     case 'DELETE_BEER':
-      return state.filter( beer => beer.id !== action.id )
+      return state.filter( b => b.id !== action.id )
     default:
       return state;
   }

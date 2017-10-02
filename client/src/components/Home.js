@@ -17,6 +17,8 @@ class Home extends Component {
     });
   }
 
+
+
   render() {
     return(
       <Segment basic>
